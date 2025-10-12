@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+# It tells the system to use the Bash interpreter found in your environment to run the script.
