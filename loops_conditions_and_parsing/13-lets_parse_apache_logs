@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Replace apache-access.log with the path to your log file if needed
 awk '{print $1, $9}' apache-access.log
 
