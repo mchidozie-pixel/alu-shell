@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# List files and display everything after the first dash
+
+for file in *; do
+    # Check if it’s not a hidden file
+    if [[ "$file" != .* ]]; then
+        # Remove everything up to and including the first dash
+        echo "${file#*-}"
+    fi
+done
