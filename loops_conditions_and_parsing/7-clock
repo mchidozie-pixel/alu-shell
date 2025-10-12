@@ -1,27 +1,19 @@
 #!/usr/bin/env bash
-# Display numbers 1-20 with superstitious messages
+# Clock script: hours 0-12, minutes 1-59
 
-count=1
+hour=0
 
-while [ $count -le 20 ]
+while [ $hour -le 12 ]
 do
-    case $count in
-        4)
-            echo "$count"
-            echo "bad luck from China"
-            ;;
-        9)
-            echo "$count"
-            echo "bad luck from Japan"
-            ;;
-        17)
-            echo "$count"
-            echo "bad luck from Italy"
-            ;;
-        *)
-            echo "$count"
-            ;;
-    esac
+    echo "Hour: $hour"
 
-    ((count++))
+    minute=1
+    while [ $minute -le 59 ]
+    do
+        echo "$minute"
+        ((minute++))
+    done
+
+    ((hour++))
 done
+
