@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script displays lines containing "bash" to find the PID
+# shellcheck disable=SC2009
+ps -e -o pid=,user=,comm= --forest | grep "[b]ash"
