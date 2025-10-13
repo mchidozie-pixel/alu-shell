@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# This script runs infinitely, creates a PID file, and implements trap handlers for SIGTERM, SIGINT, and SIGQUIT.
+
+PID_FILE="/var/run/myscript.pid"
+
+# --- Function to clean up and exit ---
+# This function is executed when SIGTERM (15) or SIGQUIT (3) is received.
+cleanup_and_exit() {
+    echo "Caught exit signal (SIGTERM or SIGQUIT). Cleaning up..."
+    # 1. Delete the PID file
+    rm -f "$PID_FILE"
+    # 2. Terminate itself
+    exit 0
+}
+
+# --- Signal Traps ---
+
+# Trap SIGTERM (15): Displays message, then executes cleanup_and_exit (which deletes PID and terminates).
+trap 'echo I hate the kill command; cleanup_and_exit' SIGTERM
+
+# Trap SIGINT (2, typically Ctrl+C): Displays message, but does NOT terminate.
+trap 'echo Y U no love me?!' SIGINT
+
+# Trap SIGQUIT (3, typically Ctrl+\): Executes cleanup_and_exit (which deletes PID and terminates).
+trap cleanup_and_exit SIGQUIT
+
+# --- Main Script Execution ---
+
+# 1. Create the PID file containing its PID ($$)
+echo $$ > "$PID_FILE"
+
+# Check if PID file creation was successful
+if [ $? -ne 0 ]; then
+    echo "Error: Could not create PID file $PID_FILE. Exiting." >&2
+    exit 1
+fi
+
+# 2. Display 'To infinity and beyond' indefinitely
+echo "PID file created: $PID_FILE (PID: $$)"
+echo "Process is running. Try signals 2 (SIGINT), 3 (SIGQUIT), or 15 (SIGTERM)."
+echo "------------------------------------------------------------------------"
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 1
+done
+
+# The script should never reach this point unless the loop is somehow broken
+exit 0
