@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# This script prints a message in an infinite loop and intercepts the SIGTERM signal to prevent termination.
+
+# Trap SIGTERM (signal 15) and execute an echo command. This makes the script "invincible"
+# to graceful kill signals, as it handles the signal instead of terminating.
+trap 'echo I am invincible!!!' SIGTERM
+
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
