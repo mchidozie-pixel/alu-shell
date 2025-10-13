@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# This script runs infinitely, writing a heartbeat to /tmp/my_process.
+
+LOG_FILE="/tmp/my_process"
+PID_FILE="/var/run/my_process.pid"
+
+# --- Main Script Execution ---
+
+# 1. Create PID file containing its PID ($$)
+echo $$ > "$PID_FILE"
+
+# 2. Display 'I am alive!' indefinitely
+while true; do
+    echo "I am alive!" >> "$LOG_FILE"
+    sleep 2
+done
