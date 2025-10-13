@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # This script displays the PID and name of processes containing the word 'bash', without using 'ps'.
 
-for pid in /proc/[0-9]*; do [ -f "$pid/comm" ] && name="$(cat "$pid/comm" | tr -d '\n')" && [[ "$name" == *bash* ]] && echo "$(basename "$pid") $name"; done
+for pid in /proc/[0-9]*; do [ -f "$pid/comm" ] && name="$(tr -d '\n' < "$pid/comm")" && [[ "$name" == *bash* ]] && echo "$(basename "$pid") $name"; done
+
