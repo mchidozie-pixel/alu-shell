@@ -1,19 +1,5 @@
 #!/usr/bin/env bash
 # show_processes.sh
-# Prints a "List" heading, then PID USER COMMAND in a user-oriented format,
-# includes all processes and shows hierarchy.
-
 echo "List"
-# print a single header line that your checker can match
-printf "%-6s %-8s %s\n" "PID" "USER" "COMMAND"
-
-# Use ps to list all processes, custom columns without the ps header (pid= etc.)
-# --forest draws the hierarchy. We format each line to align columns.
-ps -e -o pid=,user=,comm= --forest | while IFS= read -r line; do
-  # split first two whitespace-separated fields (PID and USER) and keep the rest as COMMAND
-  pid=$(printf "%s" "$line" | awk '{print $1}')
-  user=$(printf "%s" "$line" | awk '{print $2}')
-  cmd=$(printf "%s" "$line" | cut -d' ' -f3-)
-  printf "%6s %-8s %s\n" "$pid" "$user" "$cmd"
-done
-
+echo "PID"
+ps -e -o pid= --forest
