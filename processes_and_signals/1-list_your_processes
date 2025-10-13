@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # show_processes.sh
-echo "List"
-echo "PID"
-ps -e -o pid= --forest
+
+ps auxf
