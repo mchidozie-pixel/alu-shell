@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script sends the SIGKILL signal (9) to forcibly terminate the '7-highlander' process, as it ignores SIGTERM.
+
+pkill -9 -f 7-highlander
