@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# This script displays lines containing "bash" to find the PID
+# This script displays lines containing 'bash' to easily find the Bash process PID.
+
 # shellcheck disable=SC2009
-ps -e -o pid=,user=,comm= --forest | grep "[b]ash"
+ps aux | grep bash
