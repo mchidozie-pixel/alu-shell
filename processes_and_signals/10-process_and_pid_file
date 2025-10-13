@@ -27,10 +27,8 @@ trap cleanup_and_exit SIGQUIT
 # --- Main Script Execution ---
 
 # 1. Create the PID file containing its PID ($$)
-echo $$ > "$PID_FILE"
-
-# Check if PID file creation was successful
-if [ $? -ne 0 ]; then
+if ! echo $$ > "$PID_FILE"; then
+    # The check is now done directly on the command's success/failure
     echo "Error: Could not create PID file $PID_FILE. Exiting." >&2
     exit 1
 fi
