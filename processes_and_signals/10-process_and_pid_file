@@ -47,3 +47,4 @@ done
 
 # The script should never reach this point unless the loop is somehow broken
 exit 0
+
